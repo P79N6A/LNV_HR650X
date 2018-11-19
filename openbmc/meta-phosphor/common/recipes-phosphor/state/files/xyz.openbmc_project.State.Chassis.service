@@ -1,0 +1,15 @@
+[Unit]
+Description=Phosphor Chassis State Manager
+Wants=mapper-wait@-org-openbmc-managers-System.service
+After=mapper-wait@-org-openbmc-managers-System.service
+Before=mapper-wait@-xyz-openbmc_project-state-chassis.service
+
+[Service]
+ExecStart=/usr/bin/env phosphor-chassis-state-manager
+SyslogIdentifier=phosphor-chassis-state-manager
+Restart=always
+Type=dbus
+BusName={BUSNAME}
+
+[Install]
+WantedBy={SYSTEMD_DEFAULT_TARGET}
